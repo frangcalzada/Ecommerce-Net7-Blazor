@@ -2,6 +2,7 @@ using Ecommerce.Repository.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Ecommerce.Repository.Contract;
 using Ecommerce.Repository.Implementation;
+using Ecommerce.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,9 @@ builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericReposi
 
 //Sale Interface can implement Sale class
 builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+
+//Utilities Injection (AutoMapper)
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 var app = builder.Build();
 

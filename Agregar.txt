@@ -10,3 +10,9 @@ la api interactua con todas las otras capas
 
 1) Tirar comando en Model para EF:
 Scaffold-DbContext "Server=.; DataBase=DBEcommerce; Trusted_Connection=True; TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServerScaffold-DbContext "Server=.; DataBase=DBEcommerce; Trusted_Connection=True; TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer
+
+2) Definir Repositorio
+
+3) Definir DTO y Utilidades -> ResponseDTO modelo que comunica a todos los dto, es la que hace respuesta a todas las solicitudes que vamos hacer desde nuestra api
+En utilidades instalar desde nuget Automapper y AutoMapper.Extensions.Microsoft.Dependency.Injection
+
