@@ -1,0 +1,12 @@
+DTO - Capa que toma los datos del modelo y se comunica con el cliente
+Model - Capa que representa las tablas en la bd
+Repository - Capa que hace las consultas a la bd
+Service - Capa que se comunica con la api y con el repositorio
+Utilities - Capa de utilidades que va a permitir convertir un modelo a dto y dto a modelo
+
+
+webassembly se conecta con la api
+la api interactua con todas las otras capas
+
+1) Tirar comando en Model para EF:
+Scaffold-DbContext "Server=.; DataBase=DBEcommerce; Trusted_Connection=True; TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServerScaffold-DbContext "Server=.; DataBase=DBEcommerce; Trusted_Connection=True; TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer
