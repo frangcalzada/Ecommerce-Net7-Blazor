@@ -16,3 +16,8 @@ Scaffold-DbContext "Server=.; DataBase=DBEcommerce; Trusted_Connection=True; Tru
 3) Definir DTO y Utilidades -> ResponseDTO modelo que comunica a todos los dto, es la que hace respuesta a todas las solicitudes que vamos hacer desde nuestra api
 En utilidades instalar desde nuget Automapper y AutoMapper.Extensions.Microsoft.Dependency.Injection
 
+04) Capa Servicio
+Definir capas de servicio: usuario, prodcuto, ventas, categoria y dashboard
+
+05) API
+definir controladores

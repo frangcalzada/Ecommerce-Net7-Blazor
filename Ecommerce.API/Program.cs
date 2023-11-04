@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Ecommerce.Repository.Contract;
 using Ecommerce.Repository.Implementation;
 using Ecommerce.Utilities;
+using Ecommerce.Service.Contract;
+using Ecommerce.Service.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,14 +21,23 @@ builder.Services.AddDbContext<DbecommerceContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Ecommerce-DBConnection"));
 });
 
+//Repository Injection
 //This generic interface will be able to implement a generic class
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+//Repository Injection
 //Sale Interface can implement Sale class
 builder.Services.AddScoped<ISaleRepository, SaleRepository>();
 
 //Utilities Injection (AutoMapper)
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
+//Service Injection
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ISaleService, SaleService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 
 var app = builder.Build();
 
