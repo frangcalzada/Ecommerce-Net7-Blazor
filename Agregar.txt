@@ -20,4 +20,4 @@ En utilidades instalar desde nuget Automapper y AutoMapper.Extensions.Microsoft.
 Definir capas de servicio: usuario, prodcuto, ventas, categoria y dashboard
 
 05) API
-definir controladores
+definir controladores y CORS (para aceptar los dominios y conexiones entre webassembly y API)

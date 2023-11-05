@@ -1,34 +1,33 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ecommerce.Service.Contract;
-using Ecommerce.DTO;
-
+using Ecommerce.DTO; 
 
 namespace Ecommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class ProductController : ControllerBase
     {
-        private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService)
         {
-            _userService = userService;
+            _productService = productService;
         }
 
-        //Get User List
-        [HttpGet("GetUserList/{rol:alpha}/{search:alpha?}")]
-        public async Task<IActionResult> GetUserList(string rol, string search="NA")
+        //Get Product List
+        [HttpGet("GetProductList/{search:alpha?}")]
+        public async Task<IActionResult> GetProductList(string search = "NA")
         {
-            var response = new ResponseDTO<List<UserDTO>>();
+            var response = new ResponseDTO<List<ProductDTO>>();
 
             try
             {
                 if (search == "NA")
                     search = "";
-                
+
                 response.IsCorrect = true;
-                response.Result = await _userService.GetUserList(rol, search);
+                response.Result = await _productService.GetProductList(search);
             }
             catch (Exception ex)
             {
@@ -38,16 +37,40 @@ namespace Ecommerce.API.Controllers
             return Ok(response);
         }
 
-        //Get User
-        [HttpGet("GetUser/{id:int}")]
-        public async Task<IActionResult> GetUser(int id)
+        //Get Product List
+        [HttpGet("GetCatalogList/{catalog:alpha}/{search:alpha?}")]
+        public async Task<IActionResult> GetCatalogList(string catalog, string search = "NA")
         {
-            var response = new ResponseDTO<UserDTO>();
+            var response = new ResponseDTO<List<ProductDTO>>();
+
+            try
+            {
+                if (catalog.ToLower() == "all")
+                    catalog = "";
+                if (search == "NA")
+                    search = "";
+
+                response.IsCorrect = true;
+                response.Result = await _productService.GetCatalogtList(catalog, search);
+            }
+            catch (Exception ex)
+            {
+                response.IsCorrect = false;
+                response.Message = ex.Message;
+            }
+            return Ok(response);
+        }
+
+        //Get Product
+        [HttpGet("GetProduct/{id:int}")]
+        public async Task<IActionResult> GetProduct(int id)
+        {
+            var response = new ResponseDTO<ProductDTO>();
 
             try
             {
                 response.IsCorrect = true;
-                response.Result = await _userService.GetUser(id);
+                response.Result = await _productService.GetProduct(id);
             }
             catch (Exception ex)
             {
@@ -57,16 +80,16 @@ namespace Ecommerce.API.Controllers
             return Ok(response);
         }
 
-        //Create User
-        [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser([FromBody]UserDTO model)
+        //Create Product
+        [HttpPost("CreateProduct")]
+        public async Task<IActionResult> CreateProduct([FromBody] ProductDTO model)
         {
-            var response = new ResponseDTO<UserDTO>();
+            var response = new ResponseDTO<ProductDTO>();
 
             try
             {
                 response.IsCorrect = true;
-                response.Result = await _userService.CreateUser(model);
+                response.Result = await _productService.CreateProduct(model);
             }
             catch (Exception ex)
             {
@@ -76,54 +99,35 @@ namespace Ecommerce.API.Controllers
             return Ok(response);
         }
 
-        //Authorization
-        [HttpPost("Authorization")]
-        public async Task<IActionResult> Authorization([FromBody] LoginDTO model)
-        {
-            var response = new ResponseDTO<SessionDTO>();
-
-            try
-            {
-                response.IsCorrect = true;
-                response.Result = await _userService.Authorization(model);
-            }
-            catch (Exception ex)
-            {
-                response.IsCorrect = false;
-                response.Message = ex.Message;
-            }
-            return Ok(response);
-        }
-
-        //Edit User
-        [HttpPut("EditUser")]
-        public async Task<IActionResult> EditUser([FromBody] UserDTO model)
-        {
-            var response = new ResponseDTO<bool>();
-
-            try
-            {
-                response.IsCorrect = true;
-                response.Result = await _userService.EditUser(model);
-            }
-            catch (Exception ex)
-            {
-                response.IsCorrect = false;
-                response.Message = ex.Message;
-            }
-            return Ok(response);
-        }
-
-        //Remove User
-        [HttpDelete("RemoveUser/{id:int}")]
-        public async Task<IActionResult> RemoveUser(int id)
+        //Edit Product
+        [HttpPut("EditProduct")]
+        public async Task<IActionResult> EdiProduct([FromBody] ProductDTO model)
         {
             var response = new ResponseDTO<bool>();
 
             try
             {
                 response.IsCorrect = true;
-                response.Result = await _userService.RemoveUser(id);
+                response.Result = await _productService.EditProduct(model);
+            }
+            catch (Exception ex)
+            {
+                response.IsCorrect = false;
+                response.Message = ex.Message;
+            }
+            return Ok(response);
+        }
+
+        //Remove Product
+        [HttpDelete("RemoveProduct/{id:int}")]
+        public async Task<IActionResult> RemoveProduct(int id)
+        {
+            var response = new ResponseDTO<bool>();
+
+            try
+            {
+                response.IsCorrect = true;
+                response.Result = await _productService.RemoveProduct(id);
             }
             catch (Exception ex)
             {
