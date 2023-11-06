@@ -21,3 +21,6 @@ Definir capas de servicio: usuario, prodcuto, ventas, categoria y dashboard
 
 05) API
 definir controladores y CORS (para aceptar los dominios y conexiones entre webassembly y API)
+
+06) Service del webassembly, definicion de //API consumption en program.cs
+instalacion del nuget blazored.localstorage(me permite guardar la info de las compras en un localstorage) y blazored.toast

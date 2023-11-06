@@ -90,7 +90,7 @@ namespace Ecommerce.Service.Implementation
             try
             {
                 var query = _modelRepository.Read(p =>
-                string.Concat(p.Name.ToLower()).Contains(search.ToLower())
+                (p.Name!.ToLower()).Contains(search.ToLower())
                 );
 
                 List<CategoryDTO> list = _mapper.Map<List<CategoryDTO>>(await query.ToListAsync());
