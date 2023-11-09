@@ -5,6 +5,7 @@ using Blazored.LocalStorage;
 using Blazored.Toast;
 using Ecommerce.WebAssembly.Services.Contract;
 using Ecommerce.WebAssembly.Services.Implementation;
+using CurrieTechnologies.Razor.SweetAlert2;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -26,6 +27,9 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+
+//SweetAlert 2
+builder.Services.AddSweetAlert2();
 
 
 await builder.Build().RunAsync();

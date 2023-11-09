@@ -24,3 +24,5 @@ definir controladores y CORS (para aceptar los dominios y conexiones entre webas
 
 06) Service del webassembly, definicion de //API consumption en program.cs
 instalacion del nuget blazored.localstorage(me permite guardar la info de las compras en un localstorage) y blazored.toast
+
+7)Vistas en webassembly, ir a la conf del proyecto y seleccionar proyectos de inicio multiples, dejar primer ecommerce.api y luego ecommerce.webassembly
